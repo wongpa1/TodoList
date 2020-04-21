@@ -1,0 +1,1 @@
+export const INIT_NUMBER_OF_COUNTER = 2;
