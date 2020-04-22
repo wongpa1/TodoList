@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { INIT_TODOS } from "./constants/constants";
 import TodoList from "./TodoList";
-import update from 'immutability-helper';
+import update from "immutability-helper";
 
 class TodoContainer extends Component {
   constructor(props) {
@@ -27,8 +27,8 @@ class TodoContainer extends Component {
     });
   }
 
-  addTodoList(id,content) {
-    const newTodo={id:id,content:content,state:false};
+  addTodoList(id, content) {
+    const newTodo = { id: id, content: content, state: false };
     const clonedtodos = this.state.todos.slice();
     clonedtodos.push(newTodo);
     this.setState({
@@ -39,7 +39,11 @@ class TodoContainer extends Component {
   render() {
     return (
       <div>
-        <TodoList addTodoList={this.addTodoList} onMarkDone={this.onMarkDone} todos={this.state.todos} />
+        <TodoList
+          addTodoList={this.addTodoList}
+          onMarkDone={this.onMarkDone}
+          todos={this.state.todos}
+        />
       </div>
     );
   }
