@@ -1,38 +1,19 @@
-import 'antd/dist/antd.css';
-import { List } from "antd";
 import React, { Component } from "react";
-import TodoListApi from "./TodoListApi";
-
+import Todo from "./Todo";
 
 class TodoList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      todoList: [],
-    };
-  }
-
-  componentDidMount() {
-    TodoListApi.getTodoList().then((response) => {
-      console.log(response);
-      this.setState({ todoList: response.data });
-    });
-  }
 
   render() {
+    const todos = this.props.todos;
+
     return (
       <div>
-        <List>
-        dataSource={this.state.todoList}
-        renderItem={item => (
-      <List.Item>
-          {item}
-      </List.Item>)};
-        </List>
+        {todos.map((todo) => (
+          <Todo key={todo.id} todo={todo} onMarkDone={this.props.onMarkDone()} />
+        ))}
       </div>
     );
   }
 }
 
-export default List;
+export default TodoList;

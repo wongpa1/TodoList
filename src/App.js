@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import TodoList from "./TodoList";
+import TodoContainer from "./TodoContainer";
 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <TodoList/>
+        <TodoContainer/>
       </header>
     </div>
   );
