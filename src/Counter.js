@@ -18,7 +18,7 @@ class Counter extends Component {
   }
 
   componentDidUpdate(prevProps){
-    if(prevProps.number !== this.props.number){
+    if(prevProps.size !== this.props.size){
         this.setState({number: INIT_COUNTER_NUMBER})
     }
   }
@@ -35,12 +35,6 @@ class Counter extends Component {
       number: prevState.number + COUNTER_DECREMENT,
     }));
     this.props.onCalculate(COUNTER_DECREMENT);
-  }
-
-  Reset() {
-    this.setState(
-        number: INIT_COUNTER_NUMBER,
-    );
   }
 
   render() {
