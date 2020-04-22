@@ -8,13 +8,19 @@ class Todo extends Component {
   }
 
   onClickDone() {
-    this.props.onMarkDone(this.props.todo.key);
+    const {index, onMarkDone} = this.props;
+    onMarkDone(index);
   }
 
   render() {
     const todo = this.props.todo;
-
-    return <div>{todo.content}</div>;
+    return (
+      <div style={{
+        textDecoration: todo.status ? 'line-through' : 'none',
+      }} onClick={this.onClickDone}>
+        {todo.content}
+      </div>
+    );
   }
 }
 

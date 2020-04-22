@@ -8,8 +8,8 @@ class TodoList extends Component {
 
     return (
       <div>
-        {todos.map((todo) => (
-          <Todo key={todo.id} todo={todo} onMarkDone={this.props.onMarkDone()} />
+        {todos.map((todo, index) => (
+          <Todo index={index} todo={todo} onMarkDone={this.props.onMarkDone} />
         ))}
       </div>
     );
