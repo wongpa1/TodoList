@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Todo from "./Todo";
 import "antd/dist/antd.css";
-import { Input, Space, List, Button } from "antd";
+import {Space, List, Button } from "antd";
 
 class TodoList extends Component {
   constructor(props) {
@@ -15,8 +15,6 @@ class TodoList extends Component {
   }
 
   render() {
-    const { Search } = Input;
-    const todos = this.props.todos;
     return (
       <div>
         <Space direction="vertical">
@@ -28,11 +26,14 @@ class TodoList extends Component {
               </div>
             }
             bordered
-            dataSource={todos}
+            dataSource={this.props.todos}
             renderItem={(item, index) => (
               <List.Item
                 actions={[
-                  <Button onClick={this.onClick} type="primary">
+                  <Button
+                    onClick={(event) => this.onClick(index)}
+                    type="primary"
+                  >
                     delete
                   </Button>,
                 ]}
@@ -45,20 +46,6 @@ class TodoList extends Component {
                 />
               </List.Item>
             )}
-          />
-          <Search
-            type="text"
-            name="newContent"
-            enterButton="Add to TodoList"
-            placeholder="input content here..."
-            size="large"
-            onSearch={(value) => {
-              if (value.length != 0) {
-                const newId =
-                todos.length == 0 ? 0 : parseInt(todos[todos.length - 1].id);
-                this.props.addTodoList(newId, value);
-              }
-            }}
           />
         </Space>
       </div>

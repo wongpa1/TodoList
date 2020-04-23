@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { INIT_TODOS } from "./constants/constants";
 import TodoList from "./TodoList";
 import update from "immutability-helper";
+import "antd/dist/antd.css";
+import { Input, Space } from "antd";
 
 class TodoContainer extends Component {
   constructor(props) {
@@ -39,21 +41,40 @@ class TodoContainer extends Component {
 
   deleteTodoList(index) {
     const clonedTodos = this.state.todos.slice();
-    clonedTodos.splice(index,1);
+    clonedTodos.splice(index, 1);
     this.setState({
       todos: clonedTodos,
     });
   }
 
   render() {
+    const { Search } = Input;
+    const todos = this.state.todos;
     return (
       <div>
-        <TodoList
-          addTodoList={this.addTodoList}
-          deleteTodoList={this.deleteTodoList}
-          onMarkDone={this.onMarkDone}
-          todos={this.state.todos}
-        />
+        <Space direction="vertical">
+          <TodoList
+            deleteTodoList={this.deleteTodoList}
+            onMarkDone={this.onMarkDone}
+            todos={todos}
+          />
+          <Search
+            type="text"
+            name="newContent"
+            enterButton="Add to TodoList"
+            placeholder="input content here..."
+            size="large"
+            onSearch={(value) => {
+              if (value.length != 0) {
+                const newId =
+                  todos.length == 0
+                    ? 0
+                    : parseInt(todos[todos.length - 1].id) + 1;
+                this.addTodoList(newId, value);
+              }
+            }}
+          />
+        </Space>
       </div>
     );
   }
