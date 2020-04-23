@@ -16,15 +16,15 @@ class Todo extends Component {
   render() {
     const todo = this.props.todo;
     return (
-      <div
-        style={{
-          textDecoration: todo.status ? "line-through" : "none",
-        }}
-        onClick={this.onClickDone}
-      >
-        {todo.content}
-        <Space />
-        <Button></Button>
+      <div>
+        <h3
+          style={{
+            textDecoration: todo.status ? "line-through" : "none",
+          }}
+          onClick={this.onClickDone}
+        >
+          {todo.content}
+        </h3>
       </div>
     );
   }

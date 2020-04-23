@@ -9,6 +9,7 @@ class TodoContainer extends Component {
 
     this.onMarkDone = this.onMarkDone.bind(this);
     this.addTodoList = this.addTodoList.bind(this);
+    this.deleteTodoList = this.deleteTodoList.bind(this);
 
     this.state = {
       todos: INIT_TODOS,
@@ -36,11 +37,20 @@ class TodoContainer extends Component {
     });
   }
 
+  deleteTodoList(index) {
+    const clonedTodos = this.state.todos.slice();
+    clonedTodos.splice(index,1);
+    this.setState({
+      todos: clonedTodos,
+    });
+  }
+
   render() {
     return (
       <div>
         <TodoList
           addTodoList={this.addTodoList}
+          deleteTodoList={this.deleteTodoList}
           onMarkDone={this.onMarkDone}
           todos={this.state.todos}
         />
